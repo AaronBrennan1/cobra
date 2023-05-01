@@ -1,0 +1,19 @@
+name: MATLAB Conversion
+
+on:
+  push:
+    paths:
+      - '**.mlx'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    container:
+      image: mathworks/matlab:latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        # Install any dependencies here (if needed)
