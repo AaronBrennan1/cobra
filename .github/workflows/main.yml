@@ -17,3 +17,14 @@ jobs:
     - name: Install dependencies
       run: |
         # Install any dependencies here (if needed)
+    - name: Convert mlx files to PDF and HTML
+      run: matlab -batch "addpath('.'); convert_files"
+      
+    - name: Commit and push the changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git diff-index --quiet HEAD || git commit -m "Add generated PDF and HTML files"
+        git push
+
