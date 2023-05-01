@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mathworks/matlab:latest
-      options: --user 1001:121
+      options: --user 1001:121 --env MLM_LICENSE_FILE=/github/home/.matlab/license.lic
     env:
       MATLAB_LICENSE: ${{ secrets.MATLAB_LICENSE}}
     steps:
@@ -18,8 +18,6 @@ jobs:
         run: |
           mkdir -p /github/home/.matlab
           echo "$MATLAB_LICENSE" > /github/home/.matlab/license.lic
-      - name: Set MLM_LICENSE_FILE environment variable
-        run: echo "MLM_LICENSE_FILE=/github/home/.matlab/license.lic" >> $GITHUB_ENV
       - name: Check out repository
         uses: actions/checkout@v2.4.2
       - name: Install dependencies
