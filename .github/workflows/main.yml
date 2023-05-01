@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mathworks/matlab:latest
+      options: --user 1001:121
     steps:
     - name: Check out repository
       uses: actions/checkout@v2.4.2
