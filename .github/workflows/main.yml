@@ -10,8 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mathworks/matlab:latest
-      options: --user 1001:121
+      options: --user 1001:121 --volume /tmp/license.lic:/opt/matlab/licenses/license.lic
+
+      
     steps:
+    - name: Set up MATLAB license
+      run: | 
+        echo "${{ secrets.MATLAB_LICENSE }}" | base64 --decode > /tmp/license.lic
     - name: Check out repository
       uses: actions/checkout@v2.4.2
 
