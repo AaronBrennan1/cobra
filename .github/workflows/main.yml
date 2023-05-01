@@ -9,8 +9,9 @@ jobs:
   convert:
     runs-on: ubuntu-latest
     container:
-      image: mathworks/matlab:latest
+      image: mathworks/matlab:r2022a
       options: --user 1001:121 --env MLM_LICENSE_FILE=/github/home/.matlab/license.lic
+
     env:
       MATLAB_LICENSE: ${{ secrets.MATLAB_LICENSE}}
     steps:
