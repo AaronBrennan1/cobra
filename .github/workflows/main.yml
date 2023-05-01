@@ -14,22 +14,19 @@ jobs:
     env:
       MATLAB_LICENSE: ${{ secrets.MATLAB_LICENSE}}
     steps:
-    
       - name: Create MATLAB license file
         run: |
           mkdir -p /github/home/.matlab
           echo "$MATLAB_LICENSE" > /github/home/.matlab/license.lic
-
+      - name: Set MLM_LICENSE_FILE environment variable
+        run: echo "MLM_LICENSE_FILE=/github/home/.matlab/license.lic" >> $GITHUB_ENV
       - name: Check out repository
         uses: actions/checkout@v2.4.2
-
-
       - name: Install dependencies
         run: |
         # Install any dependencies here (if needed)
       - name: Convert mlx files to PDF and HTML
         run: matlab -batch "addpath('.'); convert_files"
-      
       - name: Commit and push the changes
         run: |
           git config --local user.email "action@github.com"
@@ -37,4 +34,3 @@ jobs:
           git add .
           git diff-index --quiet HEAD || git commit -m "Add generated PDF and HTML files"
           git push
-
