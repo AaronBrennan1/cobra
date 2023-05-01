@@ -18,7 +18,7 @@ jobs:
       - name: Create MATLAB license file
         run: |
           mkdir -p /github/home/.matlab
-          echo "$MATLAB_LICENSE_FILE_CONTENT" > /github/home/.matlab/license.lic
+          echo "$MATLAB_LICENSE" > /github/home/.matlab/license.lic
 
       - name: Check out repository
         uses: actions/checkout@v2.4.2
