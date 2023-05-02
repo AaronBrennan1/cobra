@@ -17,8 +17,7 @@ jobs:
           echo "Current working directory: $(Get-Location)"
           echo "Location of convert_files.m: $(Get-Location)\convert_files.m"
           matlab -batch "addpath('.'); convert_files"
-        shell: bash
-      
+
       - name: Commit and push the changes
         run: |
           git config --local user.email "action@github.com"
