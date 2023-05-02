@@ -14,8 +14,7 @@ jobs:
 
       - name: Convert mlx files to PDF and HTML
         run: |
-          echo "Current working directory: $(Get-Location)"
-          echo "Location of convert_files.m: $(Get-Location)\convert_files.m"
+        
           matlab -batch "addpath('.'); convert_files"
 
       - name: Commit and push the changes
