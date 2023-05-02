@@ -7,7 +7,7 @@ on:
 
 jobs:
   convert:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container:
       image: mathworks/matlab:r2023a
       options: --user 1001:121 --env MLM_LICENSE_FILE=/github/home/.matlab/license.lic
