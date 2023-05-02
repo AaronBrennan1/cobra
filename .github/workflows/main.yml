@@ -14,7 +14,7 @@ jobs:
 
       - name: Convert mlx files to PDF and HTML
         run: |
-          run_matlab.bat
+          ./run_matlab.bat
       
       - name: Commit and push the changes
         run: |
