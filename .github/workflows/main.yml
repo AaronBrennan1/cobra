@@ -12,19 +12,22 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2.4.2
 
-      - name: Find updated or newly added mlx files
+      - name: Find updated mlx files
         id: find-updated-files
-     
+        
         run: |
-          $mlx_files = git diff --diff-filter=d --name-only -- '*.mlx'
+          $mlx_files = (git diff --diff-filter=d --name-only -- '*.mlx') -join "`n"
+          echo "Found mlx files:"
+          echo $mlx_files
           echo "::set-output name=mlx_files::$mlx_files"
-
 
       - name: Convert mlx files to PDF and HTML
         if: steps.find-updated-files.outputs.mlx_files != ''
-      
         run: |
+          echo "Running MATLAB script with mlx files:"
+          echo "${{ steps.find-updated-files.outputs.mlx_files }}"
           .\run_matlab.bat "${{ steps.find-updated-files.outputs.mlx_files }}"
+
 
       - name: Commit and push the changes
         
