@@ -8,24 +8,19 @@ on:
 jobs:
   convert:
     runs-on: self-hosted
-    container:
-      image: mathworks/matlab:r2023a
-      options: --user 1001:121 --env MLM_LICENSE_FILE=/github/home/.matlab/license.lic
-
-    env:
-      MATLAB_LICENSE: ${{ secrets.MATLAB_LICENSE}}
     steps:
-      - name: Create MATLAB license file
-        run: |
-          mkdir -p /github/home/.matlab
-          echo "$MATLAB_LICENSE" > /github/home/.matlab/license.lic
       - name: Check out repository
         uses: actions/checkout@v2.4.2
+
       - name: Install dependencies
         run: |
-        # Install any dependencies here (if needed)
+          # Install any dependencies here (if needed)
+
       - name: Convert mlx files to PDF and HTML
-        run: matlab -batch "addpath('.'); convert_files"
+        shell: bash
+        run: |
+          matlab -batch "addpath('.'); convert_files"
+      
       - name: Commit and push the changes
         run: |
           git config --local user.email "action@github.com"
