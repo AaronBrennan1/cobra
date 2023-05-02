@@ -15,7 +15,7 @@ jobs:
       - name: Convert mlx files to PDF and HTML
         run: |
         
-          matlab -batch "addpath('.'); convert_files"
+          "C:\Program Files\MATLAB\R2021b\bin\matlab.exe" -batch "addpath('.'); convert_files"
 
       - name: Commit and push the changes
         run: |
