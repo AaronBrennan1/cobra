@@ -18,12 +18,7 @@ function convert_files
             fprintf('Error during HTML conversion: %s\n', ME.message);
         end
         
-        try
-            matlab.internal.liveeditor.openAndConvert(mlx_path, pdf_path);
-            fprintf('PDF conversion successful: %s\n', pdf_path);
-        catch ME
-            fprintf('Error during PDF conversion: %s\n', ME.message);
-        end
+       
     end
 end
 
