@@ -13,10 +13,9 @@ jobs:
         uses: actions/checkout@v2.4.2
 
       - name: Convert mlx files to PDF and HTML
-
+        shell: bash
         run: |
-          C:\Program Files\MATLAB\R2022b\bin -batch "addpath('.'); convert_files"
-
+          matlab -batch "addpath('.'); convert_files"
       
       - name: Commit and push the changes
         run: |
