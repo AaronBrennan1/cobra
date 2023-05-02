@@ -14,10 +14,11 @@ jobs:
 
       - name: Convert mlx files to PDF and HTML
         run: |
-          echo Current working directory: %cd%
-          echo Location of convert_files.m: %cd%\convert_files.m
+          echo "Current working directory: $(Get-Location)"
+          echo "Location of convert_files.m: $(Get-Location)\convert_files.m"
           matlab -batch "addpath('.'); convert_files"
-   
+        shell: bash
+      
       - name: Commit and push the changes
         run: |
           git config --local user.email "action@github.com"
