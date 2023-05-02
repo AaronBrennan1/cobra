@@ -13,10 +13,11 @@ jobs:
         uses: actions/checkout@v2.4.2
 
       - name: Convert mlx files to PDF and HTML
-        shell: bash
         run: |
+          echo Current working directory: %cd%
+          echo Location of convert_files.m: %cd%\convert_files.m
           matlab -batch "addpath('.'); convert_files"
-      
+   
       - name: Commit and push the changes
         run: |
           git config --local user.email "action@github.com"
@@ -24,3 +25,4 @@ jobs:
           git add .
           git diff-index --quiet HEAD || git commit -m "Add generated PDF and HTML files"
           git push
+
