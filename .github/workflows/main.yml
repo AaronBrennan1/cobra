@@ -13,11 +13,12 @@ jobs:
         uses: actions/checkout@v2.4.2
 
       - name: Find updated or newly added mlx files
-        
         id: find-updated-files
+        shell: pwsh
         run: |
-          mlx_files=$(git diff --diff-filter=d --name-only -- '*.mlx')
-          
+          $mlx_files = git diff --diff-filter=d --name-only -- '*.mlx'
+          echo "::set-output name=mlx_files::$mlx_files"
+
 
       - name: Convert mlx files to PDF and HTML
         if: steps.find-updated-files.outputs.mlx_files != ''
