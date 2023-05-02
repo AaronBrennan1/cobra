@@ -14,7 +14,7 @@ jobs:
 
       - name: Find updated or newly added mlx files
         id: find-updated-files
-        shell: pwsh
+     
         run: |
           $mlx_files = git diff --diff-filter=d --name-only -- '*.mlx'
           echo "::set-output name=mlx_files::$mlx_files"
