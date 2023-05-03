@@ -18,10 +18,10 @@ jobs:
           .\run_matlab.bat
 
       - name: Commit and push the changes
-        shell: cmd
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
           git diff-index --quiet HEAD || git commit -m "Add generated PDF and HTML files"
-          git push
+          git push https://${{ secrets.GH_ACTIONS_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
+
